@@ -8,6 +8,10 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 
+/**
+ * 当页面中使用viewpager时，SlidingPaneLayout会屏蔽viewpager的滑动事件
+ * 因此重写onInterceptTouchEvent，当右滑时并且panel是关闭状态（即打开panel），如果SlidingPaneLayout内部有控件可以滑动，使SlidingPaneLayout不响应当前滑动事件
+ */
 public class PagerEnabledSlidingPaneLayout extends SlidingPaneLayout {
 
     private float mInitialMotionX;

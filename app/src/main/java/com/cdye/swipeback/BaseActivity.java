@@ -17,10 +17,17 @@ public abstract class BaseActivity extends AppCompatActivity implements SlidingP
         initSlidingPaneLayout();
         super.onCreate(savedInstanceState);
     }
+
+    /**
+     *封装baseActivity，
+     * setContentView是将我们的ui布局放入PhoneWindow的DecorView中的一个Layout中
+     * 现在把Layout给他 remove掉，替换成SlidingPaneLayout，并且添加一个无背景的panel View，然后再把Layout作为SlidingPaneLayout的content添加进来
+     *
+     */
     private void initSlidingPaneLayout(){
         PagerEnabledSlidingPaneLayout slidingPaneLayout=new PagerEnabledSlidingPaneLayout(this);
         //通过反射改变mOverhangSize的值为0，这个mOverhangSize值为菜单到右边屏幕的最短距离，默认
-        //是32dp，现在给它改成0
+        //是32dp，现在给它改成0   this.mOverhangSize = (int)(32.0F * density + 0.5F);
         try {
             Field mOverhangSize = SlidingPaneLayout.class.getDeclaredField("mOverhangSize");
             mOverhangSize.setAccessible(true);
